@@ -1,0 +1,36 @@
+{
+  "name": "bart96-style-cli-ultimate",
+  "version": "0.0.0-alpha",
+  "description": "A node.js package for displaying formatted text, array or object in the console with date.",
+  "main": "src/styleCliUltimate",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bart96-b/node-style-cli-ultimate.git"
+  },
+  "keywords": [
+    "cli",
+    "style",
+    "color",
+    "colors"
+  ],
+  "author": "BART96",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bart96-b/node-style-cli-ultimate/issues"
+  },
+  "homepage": "https://github.com/bart96-b/node-style-cli-ultimate#readme",
+  "engines": {
+    "node": ">=9"
+  },
+  "devDependencies": {
+    "mocha": "^5.2.0"
+  },
+  "dependencies": {
+    "bart96-format": "^0.0.1-alpha",
+    "bart96-style": "^0.0.3-alpha",
+    "bart96-style-cli": "^0.0.2-alpha"
+  }
+}
