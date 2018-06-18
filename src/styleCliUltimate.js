@@ -12,6 +12,7 @@ class StyleCliUltimate {
     if (typeof opt != 'object') throw new Error(`В класс ${this.constructor.name} можно передавать только object.`);
 
     this.config = Object.assign({
+      form: '> [yyyy.mm.dd HH:MM]',
       replacer  : [],
       debugMode : false,
       typeColor : {
@@ -39,45 +40,6 @@ class StyleCliUltimate {
   }
 
 
-  /* >>> Types
-  _logString(msg, value) {
-    msg.text += ' '+ value;
-  }
-
-  _logNumber(msg, value) {
-    msg.type = Math.abs(value);
-    if (value < 0) msg.exit = true;
-  }
-
-  _logArray(msg, value) {
-    if (value[0].stack) msg.text += ' '+ (this.config.debugMode ? value[0].stack : value[1]);
-    else msg.text += ` [${value.toString()}]`;
-  }
-
-  _logObject(msg, value) {
-    if (value.stack && value.name && value.message) msg.text = this.config.debugMode ? value.stack : `${msg.text?' \u27A4':''} ${value.name}: ${value.message}`;
-    // else if (el.author) {user = el.author.tag.replace(/#(\d{4})$/, ' $1'); type=6}
-    else msg.text += ' '+ value.toString();
-  }
-
-  _logBoolean(msg, value) {
-    msg.text += ' '+ value.toString();
-  }
-
-  _logFunction(msg, value) {
-    msg.text += ' '+ value.toString();
-  }
-
-  _logUndefined(msg, value) {
-    msg.text += ' '+ value.toString();
-  }
-
-  _logNull(msg, value) {
-    msg.text += ' '+ value.toString();
-  }
-  */
-
-
   _msgReplacer(msg) {
     this.config.replacer.forEach(rep => msg.text.replace(rep[0], rep[1]));
 
@@ -94,7 +56,7 @@ class StyleCliUltimate {
     try {throw new Error()}
     catch (err) {parent = /at Object\.<anonymous> \(.*?\\(.+):\d+:\d+\)$/gm.exec(err.stack)[1].split(/\/|\\/).pop();}
 
-    msg.text = styleCli`{${color} > [${this.format.date()}]} [{${color}Bright ${typeName}}]{white \t=>} (${parent}){blackBright ${msg.text}}`;
+    msg.text = styleCli`{${color} ${this.format.date()}} [{${color}Bright ${typeName}}]{white \t=>} (${parent}){blackBright ${msg.text}}`;
   }
 
 
