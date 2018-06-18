@@ -39,6 +39,7 @@ class StyleCliUltimate {
   }
 
 
+  /* >>> Types
   _logString(msg, value) {
     msg.text += ' '+ value;
   }
@@ -56,6 +57,7 @@ class StyleCliUltimate {
   _logObject(msg, value) {
     if (value.stack && value.name && value.message) msg.text = this.config.debugMode ? value.stack : `${msg.text?' \u27A4':''} ${value.name}: ${value.message}`;
     // else if (el.author) {user = el.author.tag.replace(/#(\d{4})$/, ' $1'); type=6}
+    else msg.text += ' '+ value.toString();
   }
 
   _logBoolean(msg, value) {
@@ -63,8 +65,17 @@ class StyleCliUltimate {
   }
 
   _logFunction(msg, value) {
-    this.log(`Данная версия логгера не поддерживает тип данных "${{}.toString.call(value).slice(8, -1)}".`, 2);
+    msg.text += ' '+ value.toString();
   }
+
+  _logUndefined(msg, value) {
+    msg.text += ' '+ value.toString();
+  }
+
+  _logNull(msg, value) {
+    msg.text += ' '+ value.toString();
+  }
+  */
 
 
   _msgReplacer(msg) {
@@ -76,11 +87,14 @@ class StyleCliUltimate {
   }
 
   _msgAssembly(msg) {
-    let typeName = this.config.typeArray[msg.type];
-    let color = this.config.typeColor[typeName] || this.config.typeColor['Null'];
+    let parent = '';
+    let typeName = this.config.typeArray[msg.type] || 'NoTitle';
+    let color = this.config.typeColor[typeName] || this.config.typeColor['Null'] || 'white';
 
-    msg.text = styleCli`{${color} > [${this.format.date()}]} [{${color}Bright ${typeName}}]{white \t=>} {blackBright ${msg.text}}`;
-    // (${moduleParent.filename.split(/\/|\\/).pop()})
+    try {throw new Error()}
+    catch (err) {parent = /at Object\.<anonymous> \(.*?\\(.+):\d+:\d+\)$/gm.exec(err.stack)[1].split(/\/|\\/).pop();}
+
+    msg.text = styleCli`{${color} > [${this.format.date()}]} [{${color}Bright ${typeName}}]{white \t=>} (${parent}){blackBright ${msg.text}}`;
   }
 
 
@@ -91,9 +105,10 @@ class StyleCliUltimate {
       exit: false,
     };
 
-    for(let item of args) this['_log'+ {}.toString.call(item).slice(8, -1)](msg, item);
+    for(let item of args) require('./types/log'+ {}.toString.call(item).slice(8, -1))(msg, item);
 
     if (!msg.text) return;
+    if (this.config.dev == true) return msg.text;
 
     this._msgReplacer(msg);
     this._msgAssembly(msg);
@@ -103,8 +118,7 @@ class StyleCliUltimate {
 
 }
 
+let logger = new StyleCliUltimate();
+logger.log('foo', 'bar', true, Infinity, foo => {return bar})
 
-// let logger = new StyleCliUltimate();
-// logger.user('123', 5, {});
-
-module.exports = StyleCliUltimate;
+// module.exports = StyleCliUltimate;
