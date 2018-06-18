@@ -1,6 +1,6 @@
 {
   "name": "bart96-style-cli-ultimate",
-  "version": "0.0.0-alpha",
+  "version": "0.0.1-alpha",
   "description": "A node.js package for displaying formatted text, array or object in the console with date.",
   "main": "src/styleCliUltimate",
   "scripts": {
@@ -31,6 +31,6 @@
   "dependencies": {
     "bart96-format": "^0.0.1-alpha",
     "bart96-style": "^0.0.3-alpha",
-    "bart96-style-cli": "^0.0.2-alpha"
+    "bart96-style-cli": "0.0.3-alpha"
   }
 }
