@@ -104,7 +104,7 @@ class StyleCliUltimate {
 }
 
 
-let logger = new StyleCliUltimate();
-logger.user('123', 5, {});
+// let logger = new StyleCliUltimate();
+// logger.user('123', 5, {});
 
-// module.exports = StyleCliUltimate;
+module.exports = StyleCliUltimate;
