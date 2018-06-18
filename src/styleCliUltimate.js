@@ -118,7 +118,6 @@ class StyleCliUltimate {
 
 }
 
-let logger = new StyleCliUltimate();
-logger.log('foo', 'bar', true, Infinity, foo => {return bar})
 
-// module.exports = StyleCliUltimate;
+
+module.exports = StyleCliUltimate;

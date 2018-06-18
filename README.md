@@ -33,4 +33,4 @@ function | Result
 2\. | `UTC` | boolean | ✓ | `false` | [bart96-format](https://github.com/bart96-b/node-format#options-object)
 3\. | `replacer` | array | ✓ | `[]` | `[ ['for example', 'e.g.'], ['that is', 'i.e.'], ]`
 4\. | `debugMode` | boolean | ✓ | `false` | `debugMode == true ? err.stack : err.name +' '+ err.message`
-5\. | `typeColor` | object | ✓ | `{'Null':'white', 'error' : 'red', ...}` | Title = obj.key; Color = obj.value
+5\. | `typeColor` | object | ✓ | `{'Null':'white', 'error':'red', ...}` | Title = obj.key; Color = obj.value
